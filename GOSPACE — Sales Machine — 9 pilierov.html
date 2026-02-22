@@ -906,4 +906,41 @@ tr.task-done td:first-child .task-check { opacity: 1; text-decoration: none; }
   <p>GOSPACE LABS s.r.o. — Sales Machine 9 pilierov 2026 • Extrahované z Business Division Stratégia v5.3</p>
 </footer>
 
+<!-- ── Password Protection ── -->
+<div id="auth-overlay" style="position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#1e40af 100%);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',system-ui,sans-serif;">
+  <div style="text-align:center;max-width:380px;padding:0 24px;">
+    <div style="width:56px;height:56px;margin:0 auto 24px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:16px;display:flex;align-items:center;justify-content:center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+    </div>
+    <h2 style="font-family:'DM Serif Display',Georgia,serif;font-size:28px;font-weight:400;color:#fff;margin-bottom:8px;">Chránený obsah</h2>
+    <p style="font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:28px;line-height:1.6;">Tento obsah je prístupný len s heslom.<br>Zadajte prístupové heslo nižšie.</p>
+    <div style="position:relative;">
+      <input id="auth-input" type="password" placeholder="Zadajte heslo…" autofocus
+        style="width:100%;padding:14px 18px;font-size:15px;font-family:inherit;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:#fff;outline:none;transition:border-color 0.2s;"
+        onfocus="this.style.borderColor='rgba(96,165,250,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+    </div>
+    <button id="auth-btn" onclick="checkAuth()"
+      style="width:100%;margin-top:12px;padding:14px;font-size:14px;font-weight:600;font-family:inherit;background:#2563eb;color:#fff;border:none;border-radius:10px;cursor:pointer;letter-spacing:0.02em;transition:background 0.2s;"
+      onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
+      Odomknúť
+    </button>
+    <p id="auth-error" style="font-size:13px;color:#f87171;margin-top:14px;opacity:0;transition:opacity 0.3s;">Nesprávne heslo. Skúste znova.</p>
+    <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:24px;">GOSPACE LABS &middot; Business Division 2026</p>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH='f4632537eaa1ef716b7b79ae9cf509374b23ad4765e789848bdb8a40e3ac222c';
+  var KEY='gospace_auth_2026';
+  if(sessionStorage.getItem(KEY)===HASH){document.getElementById('auth-overlay').style.display='none';}
+  window.checkAuth=async function(){
+    var input=document.getElementById('auth-input');var pwd=input.value;
+    var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pwd));
+    var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+    if(hex===HASH){sessionStorage.setItem(KEY,HASH);var ov=document.getElementById('auth-overlay');ov.style.transition='opacity 0.4s ease';ov.style.opacity='0';setTimeout(function(){ov.style.display='none';},400);}
+    else{document.getElementById('auth-error').style.opacity='1';input.value='';input.focus();input.style.borderColor='#f87171';setTimeout(function(){input.style.borderColor='rgba(255,255,255,0.15)';},1500);}
+  };
+  document.getElementById('auth-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkAuth();});
+})();
+</script>
 </body></html>
