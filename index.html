@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOSPACE LABS — Business 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f9fc;
+  --bg-card: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --text-muted: #475569;
+  --text-dim: #94a3b8;
+  --accent-blue: #2563eb;
+  --accent-blue-light: #eff6ff;
+  --accent-blue-border: #bfdbfe;
+  --accent-green: #059669;
+  --accent-green-light: #ecfdf5;
+  --accent-green-border: #a7f3d0;
+  --accent-amber: #d97706;
+  --accent-amber-light: #fffbeb;
+  --accent-amber-border: #fde68a;
+  --accent-purple: #7c3aed;
+  --accent-purple-light: #f5f3ff;
+  --accent-purple-border: #ddd6fe;
+  --accent-cyan: #0891b2;
+  --accent-cyan-light: #ecfeff;
+  --accent-cyan-border: #a5f3fc;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  --shadow-xl: 0 12px 40px rgba(0,0,0,0.12);
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding: 80px 40px 100px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 30%, #1e40af 60%, #1d4ed8 100%);
+  color: #fff;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(96,165,250,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  animation: fadeIn 0.6s ease;
+}
+
+.hero-logo .logo-mark {
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero-logo .logo-text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 54px);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  animation: fadeIn 0.8s ease 0.1s both;
+}
+
+.hero h1 span {
+  color: #93c5fd;
+}
+
+.hero-subtitle {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  max-width: 540px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+  animation: fadeIn 0.8s ease 0.2s both;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  animation: fadeIn 0.8s ease 0.3s both;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat .value {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.hero-stat .label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Cards Section ── */
+.cards-section {
+  max-width: 1100px;
+  margin: -48px auto 0;
+  padding: 0 40px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.cards-section-header {
+  text-align: center;
+  margin-bottom: 36px;
+  padding-top: 12px;
+}
+
+.cards-section-header .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: var(--accent-blue-light);
+  border: 1px solid var(--accent-blue-border);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-blue);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px 28px 28px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 14px 14px 0 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  border-color: transparent;
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.card-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+}
+
+.card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: gap 0.2s ease;
+}
+
+.card:hover .card-action {
+  gap: 10px;
+}
+
+.card-action svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover .card-action svg {
+  transform: translateX(2px);
+}
+
+/* ── Card Variants ── */
+.card--blue::before { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+.card--blue .card-num { background: var(--accent-blue-light); border: 1px solid var(--accent-blue-border); color: var(--accent-blue); }
+.card--blue .card-tag { background: var(--accent-blue-light); color: var(--accent-blue); }
+.card--blue .card-action { color: var(--accent-blue); }
+
+.card--green::before { background: linear-gradient(90deg, #059669, #10b981); }
+.card--green .card-num { background: var(--accent-green-light); border: 1px solid var(--accent-green-border); color: var(--accent-green); }
+.card--green .card-tag { background: var(--accent-green-light); color: var(--accent-green); }
+.card--green .card-action { color: var(--accent-green); }
+
+.card--purple::before { background: linear-gradient(90deg, #7c3aed, #8b5cf6); }
+.card--purple .card-num { background: var(--accent-purple-light); border: 1px solid var(--accent-purple-border); color: var(--accent-purple); }
+.card--purple .card-tag { background: var(--accent-purple-light); color: var(--accent-purple); }
+.card--purple .card-action { color: var(--accent-purple); }
+
+.card--amber::before { background: linear-gradient(90deg, #d97706, #f59e0b); }
+.card--amber .card-num { background: var(--accent-amber-light); border: 1px solid var(--accent-amber-border); color: var(--accent-amber); }
+.card--amber .card-tag { background: var(--accent-amber-light); color: var(--accent-amber); }
+.card--amber .card-action { color: var(--accent-amber); }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.footer span {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero { padding: 60px 24px 80px; }
+  .hero-stats { gap: 24px; }
+  .hero-stat .value { font-size: 22px; }
+  .cards-section { padding: 0 20px 60px; }
+  .cards-grid { grid-template-columns: 1fr; gap: 16px; }
+  .card { padding: 24px 22px 22px; }
+  .card h3 { font-size: 19px; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 48px 16px 64px; }
+  .hero h1 { font-size: 28px; }
+  .hero-subtitle { font-size: 15px; }
+  .hero-stats { flex-direction: column; gap: 16px; }
+  .cards-section { padding: 0 16px 48px; margin-top: -36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-logo">
+      <div class="logo-mark">G</div>
+      <div class="logo-text">GOSPACE LABS</div>
+    </div>
+    <h1>Business Division<br><span>Stratégia 2026</span></h1>
+    <p class="hero-subtitle">
+      Kompletný strategický rámec pre rast, predaj a exekúciu.
+      Všetky kľúčové dokumenty na jednom mieste.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="value">4</div>
+        <div class="label">Dokumenty</div>
+      </div>
+      <div class="hero-stat">
+        <div class="value">9</div>
+        <div class="label">Piliere predaja</div>
+      </div>
+      <div class="hero-stat">
+        <div class="value">2026</div>
+        <div class="label">Roadmap</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Document Cards ── -->
+<div class="cards-section">
+  <div class="cards-section-header">
+    <div class="badge">Strategické dokumenty</div>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- 1. Business Division Stratégia -->
+    <a class="card card--blue" href="GOSPACE LABS — Business Division Stratégia 2026.html">
+      <div class="card-num">01</div>
+      <h3>Business Division Stratégia 2026</h3>
+      <p>Hlavný strategický dokument — vízia, ciele, OKR, organizačná štruktúra a plán rastu pre celú Business Division.</p>
+      <div class="card-tags">
+        <span class="card-tag">Stratégia</span>
+        <span class="card-tag">OKR</span>
+        <span class="card-tag">Organizácia</span>
+      </div>
+      <div class="card-action">
+        Otvoriť dokument
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+    </a>
+
+    <!-- 2. Čomu dať najväčšiu energiu -->
+    <a class="card card--green" href="GOSPACE — Čomu dať najväčšiu energiu v 2026.html">
+      <div class="card-num">02</div>
+      <h3>Čomu dať najväčšiu energiu v 2026</h3>
+      <p>Strategické priority a fokus oblasti — kde koncentrovať zdroje a energiu pre maximálny dopad v roku 2026.</p>
+      <div class="card-tags">
+        <span class="card-tag">Priority</span>
+        <span class="card-tag">Fokus</span>
+        <span class="card-tag">Energia</span>
+      </div>
+      <div class="card-action">
+        Otvoriť dokument
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+    </a>
+
+    <!-- 3. Sales Machine — 9 pilierov -->
+    <a class="card card--purple" href="GOSPACE — Sales Machine — 9 pilierov.html">
+      <div class="card-num">03</div>
+      <h3>Sales Machine — 9 pilierov</h3>
+      <p>Detailný framework predajného stroja — 9 kľúčových pilierov, ktoré tvoria základ systematického a škálovateľného predaja.</p>
+      <div class="card-tags">
+        <span class="card-tag">Sales</span>
+        <span class="card-tag">Framework</span>
+        <span class="card-tag">9 pilierov</span>
+      </div>
+      <div class="card-action">
+        Otvoriť dokument
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+    </a>
+
+    <!-- 4. Weekly Scorecard & Leaderboard -->
+    <a class="card card--amber" href="GOSPACE — Weekly Scorecard &amp; Leaderboard.html">
+      <div class="card-num">04</div>
+      <h3>Weekly Scorecard &amp; Leaderboard</h3>
+      <p>Týždenný prehľad výkonu — scorecard metriky, leaderboard a tracking pokroku voči stanoveným cieľom.</p>
+      <div class="card-tags">
+        <span class="card-tag">Tracking</span>
+        <span class="card-tag">KPI</span>
+        <span class="card-tag">Leaderboard</span>
+      </div>
+      <div class="card-action">
+        Otvoriť dokument
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<div class="footer">
+  <span>GOSPACE LABS</span> &middot; Business Division &middot; 2026
+</div>
+
+</body>
+</html>
