@@ -355,13 +355,82 @@ tr.task-done td:first-child .task-check { opacity: 1; text-decoration: none; }
 .doc-footer { padding: 28px 40px; text-align: center; color: var(--text-dim); font-size: 12px; border-top: 1px solid var(--border); background: var(--bg); }
 
 @media (max-width: 768px) {
-  .hero, .content { padding-left: 20px; padding-right: 20px; }
-  .nav-sticky { padding: 0px 16px; }
-  section { padding: 32px 0px; }
+  .hero, .content { padding-left: 16px; padding-right: 16px; }
+  .nav-sticky { padding: 0px 12px; }
+  section { padding: 28px 0px; }
   .country-card.span2 { grid-column: span 1; }
-  .flow-steps { flex-wrap: wrap; }
-  .flow-step { min-width: 140px; border-radius: 8px !important; }
+  .flow-steps { flex-wrap: wrap; gap: 8px; }
+  .flow-step { min-width: 100% !important; border-radius: 8px !important; }
   .flow-step::after { display: none !important; }
+
+  /* P-card pillar headers — stack vertically */
+  .p-card { padding: 12px 14px; }
+  .p-card .p-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .p-card .p-own { margin-left: 0; font-size: 11px; }
+  .p-card .p-name { font-size: 13px; line-height: 1.4; }
+  .p-card .p-list li { font-size: 12px; }
+
+  /* Card and card-meta */
+  .card { padding: 14px; }
+  .card p { font-size: 13px; }
+  .card-meta { flex-direction: column; gap: 6px; font-size: 11px; }
+
+  /* Grids — force single column */
+  .gfit { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important; gap: 6px; }
+  .g5 { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important; gap: 6px; }
+  .card-grid { grid-template-columns: 1fr !important; }
+
+  /* Aktualizačný moment 4-col grid */
+  .am-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Tables — scrollable */
+  .action-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* KPI grid */
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Back home button — smaller on mobile */
+  .back-home { top: 10px; left: 10px; padding: 6px 12px; font-size: 12px; }
+  .back-home svg { width: 12px; height: 12px; }
+
+  /* Section headings */
+  h2 { font-size: 22px !important; }
+  h3 { font-size: 15px; }
+
+  /* Callouts */
+  .callout { padding: 14px 16px; }
+
+  /* Pipeline and tender grids */
+  .pipeline-grid, .tender-highlights, .country-grid { grid-template-columns: 1fr !important; }
+
+  /* Dash grid */
+  .dash-grid { grid-template-columns: 1fr !important; }
+
+  /* Flow grid */
+  .flow-grid { grid-template-columns: 1fr !important; }
+
+  /* Leaderboard table — scrollable */
+  .leaderboard { overflow-x: auto; }
+
+  /* Role grid */
+  .role-grid { grid-template-columns: 1fr !important; }
+
+  /* Footer */
+  .doc-footer { padding: 20px 16px; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 48px 16px 32px; }
+  .hero h1 { font-size: 24px !important; }
+  .hero-meta { flex-direction: column; gap: 8px; font-size: 11px; }
+  .g5 { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important; }
+  .gfit { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .p-card .p-num { font-size: 10px; padding: 2px 6px; }
+  .icell { padding: 8px; }
 }
 
 @media print {
@@ -751,7 +820,7 @@ tr.task-done td:first-child .task-check { opacity: 1; text-decoration: none; }
   <div style="background:var(--bg-card);border-radius:12px;padding:20px 24px;margin:12px 0 20px;">
     <h4 style="margin:0 0 4px;">Aktualizačný moment — workflow (prierezový princíp)</h4>
     <p style="margin:0 0 16px;color:var(--text-dim);font-size:14px;">Tento princíp sa aplikuje naprieč všetkými 9 piliermi — je to spôsob myslenia, nie samostatný proces.</p>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+    <div class="am-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
       <div style="border-left:3px solid var(--accent-green);padding:8px 12px;background:rgba(52,168,83,0.04);border-radius:0 8px 8px 0;">
         <div style="font-size:11px;font-weight:700;color:var(--accent-green);text-transform:uppercase;letter-spacing:1px;">Monitor</div>
         <div style="font-weight:600;margin:4px 0;">Zachytiť signál</div>
