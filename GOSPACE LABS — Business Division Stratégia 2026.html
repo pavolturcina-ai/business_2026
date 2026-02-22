@@ -2414,4 +2414,15 @@ tr.task-done td:first-child .task-check { opacity: 1; text-decoration: none; }
 
 
 
+
+<script>
+document.querySelectorAll('[data-href]').forEach(function(el) {
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', function(e) {
+    if (e.target.type === 'checkbox') return;
+    var target = document.querySelector(el.getAttribute('data-href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
 </body></html>
