@@ -213,6 +213,150 @@ body {
   gap: 20px;
 }
 
+/* ── Priority Card ── */
+.card--priority {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto auto;
+  column-gap: 28px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1e40af 100%);
+  color: #fff;
+  border: 1px solid rgba(59,130,246,0.3);
+  padding: 36px 36px 32px;
+  position: relative;
+}
+
+.card--priority::before {
+  background: linear-gradient(90deg, #60a5fa, #3b82f6, #2563eb) !important;
+  height: 4px !important;
+  opacity: 1 !important;
+}
+
+.card--priority::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(ellipse at top right, rgba(96,165,250,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.card--priority:hover {
+  border-color: rgba(96,165,250,0.5);
+  box-shadow: 0 12px 40px rgba(37,99,235,0.25), 0 0 0 1px rgba(59,130,246,0.2);
+  transform: translateY(-4px);
+}
+
+.card--priority .priority-badge {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  background: rgba(250,204,21,0.15);
+  border: 1px solid rgba(250,204,21,0.3);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fde68a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.card--priority .priority-badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+.card--priority .card-num-wrap {
+  grid-row: 1 / 5;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+.card--priority .card-num {
+  width: 52px;
+  height: 52px;
+  font-size: 18px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 14px;
+}
+
+.card--priority h3 {
+  font-size: 26px;
+  color: #fff;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.card--priority .card-subtitle {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 16px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.card--priority p {
+  color: rgba(255,255,255,0.7);
+  font-size: 14.5px;
+  margin-bottom: 20px;
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+.card--priority .card-tags {
+  position: relative;
+  z-index: 1;
+}
+
+.card--priority .card-tag {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+}
+
+.card--priority .card-action {
+  color: #93c5fd;
+  position: relative;
+  z-index: 1;
+}
+
+.card--priority .card-meta {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.card--priority .card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+}
+
+.card--priority .card-meta-item svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+}
+
 /* ── Card ── */
 .card {
   background: var(--bg-card);
@@ -364,6 +508,10 @@ body {
   .cards-grid { grid-template-columns: 1fr; gap: 16px; }
   .card { padding: 24px 22px 22px; }
   .card h3 { font-size: 19px; }
+  .card--priority { grid-template-columns: 1fr; padding: 28px 22px 24px; }
+  .card--priority .card-num-wrap { display: none; }
+  .card--priority h3 { font-size: 22px; }
+  .card--priority .priority-badge { position: static; margin-bottom: 14px; align-self: flex-start; }
 }
 
 @media (max-width: 480px) {
@@ -414,18 +562,27 @@ body {
 
   <div class="cards-grid">
 
-    <!-- 1. Business Division Stratégia -->
-    <a class="card card--blue" href="GOSPACE LABS — Business Division Stratégia 2026.html">
-      <div class="card-num">01</div>
+    <!-- 1. Business Division Stratégia — PRIORITY DOC -->
+    <a class="card card--priority" href="GOSPACE LABS — Business Division Stratégia 2026.html">
+      <div class="priority-badge">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Prioritný dokument
+      </div>
+      <div class="card-num-wrap">
+        <div class="card-num">01</div>
+      </div>
       <h3>Business Division Stratégia 2026</h3>
-      <p>Hlavný strategický dokument — vízia, ciele, OKR, organizačná štruktúra a plán rastu pre celú Business Division.</p>
+      <div class="card-subtitle">Hlavný strategický dokument pre celú Business Division</div>
+      <p>Kompletná vízia, ciele, OKR, organizačná štruktúra a plán rastu. Tento dokument je východiskový bod pre všetky ostatné materiály a definuje smer na rok 2026.</p>
       <div class="card-tags">
         <span class="card-tag">Stratégia</span>
         <span class="card-tag">OKR</span>
         <span class="card-tag">Organizácia</span>
+        <span class="card-tag">Vízia</span>
+        <span class="card-tag">Rast</span>
       </div>
       <div class="card-action">
-        Otvoriť dokument
+        Otvoriť prioritný dokument
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </div>
     </a>
