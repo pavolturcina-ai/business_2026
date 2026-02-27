@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOSPACE LABS — Business Division 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css">
+  <style>
+    :root {
+      --blue: #2563eb;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --purple: #8b5cf6;
+      --cyan: #06b6d4;
+      --red: #ef4444;
+      --bg: #0a1628;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0a1628 0%, #1a365d 50%, #2563eb 100%);
+      padding: 80px 24px 60px;
+      text-align: center;
+    }
+
+    .hero-label {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: "DM Serif Display", Georgia, serif;
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 400;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: -30px auto 60px;
+      padding: 0 24px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .card:nth-child(1)::before { background: var(--blue); }
+    .card:nth-child(2)::before { background: var(--green); }
+    .card:nth-child(3)::before { background: var(--amber); }
+    .card:nth-child(4)::before { background: var(--purple); }
+
+    .card:hover {
+      border-color: rgba(255,255,255,0.18);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .card-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 20px;
+      right: 24px;
+      color: var(--text-muted);
+      font-size: 18px;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover .card-arrow {
+      transform: translateX(4px);
+      color: var(--text);
+    }
+
+    .team-section {
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    .team-section h2 {
+      font-family: "DM Serif Display", Georgia, serif;
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .team-section p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .team-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .team-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 60px 20px 40px; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-label">Business Division</div>
+    <h1>GOSPACE LABS 2026</h1>
+    <p>Stratégia, Sales Machine, Scorecard a priority pre rok 2026</p>
+  </div>
+
+  <div class="container">
+    <div class="cards">
+      <a class="card" href="GOSPACE LABS — Business Division Stratégia 2026.html">
+        <div class="card-icon">🎯</div>
+        <h3>Business Division Stratégia 2026</h3>
+        <p>Master plán, projekty, krajiny, pipeline a ASAP akčné kroky</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a class="card" href="GOSPACE — Čomu dať najväčšiu energiu v 2026.html">
+        <div class="card-icon">⚡</div>
+        <h3>Čomu dať najväčšiu energiu</h3>
+        <p>Priority, alokácia zdrojov a ROI analýza iniciatív</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a class="card" href="GOSPACE — Sales Machine — 9 pilierov.html">
+        <div class="card-icon">🚀</div>
+        <h3>Sales Machine — 9 pilierov</h3>
+        <p>Web, AI Pre-Sales, CRM, partneri, eventy a marketing</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a class="card" href="GOSPACE — Weekly Scorecard & Leaderboard.html">
+        <div class="card-icon">📊</div>
+        <h3>Weekly Scorecard & Leaderboard</h3>
+        <p>Týždenné skóre, body, rebríček a KPI dashboard</p>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="team-section">
+      <h2>Team</h2>
+      <p>13 členov · @gospace.tech</p>
+      <div class="team-badge">
+        <span class="dot"></span>
+        Prihlásenie cez Google · Slack notifikácie
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

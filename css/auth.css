@@ -1,0 +1,181 @@
+/* ============================================
+   GOSPACE LABS — Auth Styles
+   Login overlay + User bar
+   ============================================ */
+
+/* Hide page content until authenticated */
+body:not(.gospace-authenticated) > *:not(#gospace-login-overlay):not(script) {
+  visibility: hidden !important;
+}
+
+/* Login Overlay */
+#gospace-login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a1628 0%, #1a365d 50%, #2563eb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.gospace-login-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+}
+
+.gospace-login-logo {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+
+.gospace-login-card h2 {
+  color: #e2e8f0;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 16px;
+}
+
+.gospace-login-card p {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 32px;
+}
+
+.gospace-login-card p strong {
+  color: #60a5fa;
+}
+
+.gospace-login-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #1a1a2e;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 100%;
+}
+
+.gospace-login-btn:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gospace-login-btn:active {
+  transform: translateY(0);
+}
+
+.gospace-login-error {
+  color: #f87171;
+  font-size: 13px;
+  margin-top: 16px;
+  min-height: 20px;
+}
+
+/* User Bar */
+#gospace-user-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 99998;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.gospace-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gospace-user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(96, 165, 250, 0.4);
+}
+
+.gospace-user-name {
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.gospace-logout-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.gospace-logout-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+}
+
+/* Notification toast */
+.gospace-toast {
+  position: fixed;
+  bottom: 60px;
+  right: 24px;
+  background: rgba(16, 185, 129, 0.95);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  z-index: 99997;
+  animation: gospaceToastIn 0.3s ease, gospaceToastOut 0.3s ease 2.5s forwards;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes gospaceToastIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gospaceToastOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(10px); }
+}
+
+/* Extra bottom padding so content isn't hidden behind user bar */
+body.gospace-authenticated {
+  padding-bottom: 60px;
+}
